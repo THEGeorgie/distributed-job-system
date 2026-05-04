@@ -24,6 +24,13 @@ void create_js_paket_process_client(json_object *jobj, char *program, int data[]
     *out = strdup(json_object_to_json_string(jobj));
 }
 
+void create_js_packet_procees_result_server(json_object * jobj, char *result,  char **out) {
+    json_object_object_add(jobj, "result", json_object_new_string(result));
+
+    *out = strdup(json_object_to_json_string(jobj));
+}
+
+
 //response
 void create_js_paket_login_server(json_object *jobj, int id,  char **out) {
     json_object_object_add(jobj, "id", json_object_new_int(id));

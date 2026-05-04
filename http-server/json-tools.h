@@ -11,6 +11,7 @@ void create_js_paket_login_client(json_object *jobj, char *type,  char **out);
 void create_js_paket_login_server(json_object *jobj, int id,  char **out);
 void create_js_paket_process_client(json_object *jobj, char * program, int data[], int array_len,  char **out);
 void create_js_paket_process_server(json_object *jobj,  char **out);
+void create_js_packet_procees_result_server(json_object * jobj, char *result, char **out);
 int extract_js_packet(json_object *jobj, char key[], char **out);
 int extract_js_packet_int(json_object *jobj, char key[], int *out);
 

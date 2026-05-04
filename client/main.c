@@ -1,7 +1,3 @@
-/*
-** client.c -- a stream socket client demo
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -90,8 +86,8 @@ int main(int argc, char *argv[])
 
     freeaddrinfo(servinfo); // all done with this structure
 
-    buf = create_request("POST", "/login", "","");
-    printf("client: sending '%s'\n",buf);
+    buf = create_request("POST", "/process", argv[3],argv[2]);
+    printf("client: sending process request: '%s'\n",buf);
 
     if (send(sockfd, buf, strlen(buf), 0) == -1) {
         perror("send");
@@ -102,23 +98,8 @@ int main(int argc, char *argv[])
         exit(1);
     }
     response[numbytes] = '\0';
+    printf("client: received '%s'\n",response);
 
-    char *msg = strstr(response, "\r\n\r\n");
-    if (msg == NULL) {
-        perror("client: ");
-    }
-    json_object * jObj = json_tokener_parse(msg);
-    extract_js_packet_int(jObj, "id", &id);
-    printf("client: received id %d\n", id);
-    json_object_put(jObj);
-
-    printf("Program name: %s, data name: %s", argv[2], argv[3]);
-    buf = create_request("POST", "/process", argv[3],argv[2]);
-    printf("client: sending process request: '%s'\n",buf);
-
-    if (send(sockfd, buf, strlen(buf), 0) == -1) {
-        perror("send");
-    }
 
     close(sockfd);
     free(buf);

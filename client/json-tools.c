@@ -7,8 +7,8 @@
 
 
 //request
-void create_js_paket_login_client(json_object *jobj, char *type,  char **out) {
-    json_object_object_add(jobj, "deviceType", json_object_new_string(type));
+void create_js_paket_login_client(json_object *jobj, char **out) {
+    json_object_object_add(jobj, "deviceType", json_object_new_string("C"));
     *out = strdup(json_object_to_json_string(jobj));
 }
 

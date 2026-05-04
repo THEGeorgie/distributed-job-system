@@ -61,7 +61,7 @@ char * handle_login() {
 
     json_object * login = json_object_new_object();
     char * request;
-    create_js_paket_login_client(login, "C", &request);
+    create_js_paket_login_client(login, &request);
     json_object_put(login);
 
     return request;
