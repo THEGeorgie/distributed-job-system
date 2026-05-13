@@ -2,8 +2,6 @@
 // Created by gogo on 6/27/25.
 //
 #include <json-c/json.h>
-#include "global-variables.h"
-#include <stdio.h>
 
 #ifndef JSON_TOOLS_H
 #define JSON_TOOLS_H

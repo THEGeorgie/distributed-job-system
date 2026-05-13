@@ -1,110 +1,56 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <string.h>
-#include <netdb.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-
 #include "httpImp.h"
-#include "global-variables.h"
 
-#define PORT "3490" // the port client will be connecting to
-#define MAXDATASIZE 2097152 //2MB
+#define PORT 3490           // the port client will be connecting to
+#define MAXDATASIZE 2097152 // 2MB
 
-// get sockaddr, IPv4 or IPv6:
-void *get_in_addr(struct sockaddr *sa)
-{
-    if (sa->sa_family == AF_INET) {
-        return &(((struct sockaddr_in*)sa)->sin_addr);
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[]) {
+  if (argc != 4) {
+    perror("usage: client hostname, directory of program,  directory "
+           "of data(must be a csv file)\n");
+    exit(1);
+  }
+  struct sockaddr_in server;
+  int lfd;
+  char r_buff[MAXDATASIZE] = "";
+  char *s_buff;
+
+  lfd = socket(AF_INET, SOCK_STREAM, 0);
+  server.sin_family = AF_INET;
+  server.sin_port = htons(PORT);
+  server.sin_addr.s_addr = inet_addr(argv[1]);
+
+  if (connect(lfd, (struct sockaddr *)&server, sizeof server) < 0) {
+    perror("Unable to establish a connection with the server");
+    return 2;
+  }
+
+  while (1) {
+    s_buff = create_request("POST", "/process", argv[3], argv[2]);
+    if (s_buff == NULL) {
+      perror("Failed creating a request.");
+      break;
     }
+    send(lfd, s_buff, strlen(s_buff), 0);
+    if (strcmp(s_buff, "end") == 0)
+      break;
 
-    return &(((struct sockaddr_in6*)sa)->sin6_addr);
-}
+    recv(lfd, r_buff, sizeof r_buff, 0);
+    printf("[server] %s", r_buff);
+    break;
 
-int main(int argc, char *argv[])
-{
-    int sockfd, numbytes;
-    char *buf = malloc(MAXDATASIZE);
-    if (buf == NULL) {
-        perror("Memory allocation failed");
-        return EXIT_FAILURE;
-    }
-    char *response = malloc(MAXDATASIZE);
-    if (response == NULL) {
-        perror("Memory allocation failed");
-        return EXIT_FAILURE;
-    }
-    size_t bytesRead;
-    struct addrinfo hints, *servinfo, *p;
-    int rv;
-    char s[INET6_ADDRSTRLEN];
+    printf("\n");
+  }
 
+  close(lfd);
 
-    if (argc != 4) {
-        fprintf(stderr,"usage: client hostname, directory of program,  directory of data(must be a csv file)\n");
-        exit(1);
-    }
-
-    memset(&hints, 0, sizeof hints);
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_STREAM;
-
-    if ((rv = getaddrinfo(argv[1], PORT, &hints, &servinfo)) != 0) {
-        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
-        return 1;
-    }
-
-    // loop through all the results and connect to the first we can
-    for(p = servinfo; p != NULL; p = p->ai_next) {
-        if ((sockfd = socket(p->ai_family, p->ai_socktype,
-                p->ai_protocol)) == -1) {
-            perror("client: socket");
-            continue;
-                }
-
-        if (connect(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
-            perror("client: connect");
-            close(sockfd);
-            continue;
-        }
-
-        break;
-    }
-
-    if (p == NULL) {
-        fprintf(stderr, "client: failed to connect\n");
-        return 2;
-    }
-
-    inet_ntop(p->ai_family, get_in_addr((struct sockaddr *)p->ai_addr),
-            s, sizeof s);
-    printf("client: connecting to %s\n", s);
-
-    freeaddrinfo(servinfo); // all done with this structure
-
-    buf = create_request("POST", "/process", argv[3],argv[2]);
-    printf("client: sending process request: '%s'\n",buf);
-
-    if (send(sockfd, buf, strlen(buf), 0) == -1) {
-        perror("send");
-    }
-
-    if ((numbytes = recv(sockfd, response, MAXDATASIZE, 0)) == -1) {
-        perror("recv");
-        exit(1);
-    }
-    response[numbytes] = '\0';
-    printf("client: received '%s'\n",response);
-
-
-    close(sockfd);
-    free(buf);
-    free(response);
-
-
-    return 0;
+  return 0;
 }
