@@ -5,11 +5,6 @@
 
 #include <string.h>
 //request
-void create_js_paket_login_client(json_object *jobj, char *type,  char **out) {
-    json_object_object_add(jobj, "deviceType", json_object_new_string(type));
-    *out = strdup(json_object_to_json_string(jobj));
-}
-
 void create_js_paket_process_client(json_object *jobj, char *program, int data[], int array_len,  char **out) {
     json_object_object_add(jobj, "program", json_object_new_string(program));
     json_object *dataArray = json_object_new_array_ext(array_len);
@@ -26,18 +21,6 @@ void create_js_paket_process_client(json_object *jobj, char *program, int data[]
 
 void create_js_packet_procees_result_server(json_object * jobj, char *result,  char **out) {
     json_object_object_add(jobj, "result", json_object_new_string(result));
-
-    *out = strdup(json_object_to_json_string(jobj));
-}
-
-void create_js_paket_login_server(json_object *jobj, int id,  char **out) {
-    json_object_object_add(jobj, "id", json_object_new_int(id));
-    *out = strdup(json_object_to_json_string(jobj));
-}
-
-void create_js_paket_proccess_ticket_server(json_object *jobj, int pId, char *pName,  char **out) {
-    json_object_object_add(jobj, "processId", json_object_new_int(pId));
-    json_object_object_add(jobj, "processName", json_object_new_string(pName));
 
     *out = strdup(json_object_to_json_string(jobj));
 }

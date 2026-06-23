@@ -19,15 +19,10 @@ char * handle_post(char * request, char* path) {
     char *handler_result = NULL;
     char *response = NULL;
 
-    if (strcmp(path, "/login") == 0) {
-        handler_result = handle_login(body);
-    }
-    else if (strcmp(path, "/process") == 0) {
+    if (strcmp(path, "/process") == 0) {
         handler_result = handle_process(body);
     }
-    else if (strcmp(path, "/exit") == 0) {
-        handler_result = handle_exit(body);
-    }
+    
     else {
         return strdup("HTTP/1.1 404 Not Found\r\n\r\n");
     }
@@ -51,28 +46,6 @@ char * handle_post(char * request, char* path) {
     return response;
 }
 
-char * handle_login(char * request) {
-    json_object * jdata = json_tokener_parse(request);
-    char * out;
-    extract_js_packet(jdata, "deviceType", &out);
-
-    if (strcmp(out, "C") == 0) {
-        int id = create_user(&client_ids);
-        json_object * dataOutput = json_object_new_object();
-        create_js_paket_login_server(dataOutput,id, &out);
-        json_object_put(jdata);
-        json_object_put(dataOutput);
-        return out;
-    }
-    if (strcmp(out, "N") == 0) {
-        int id = create_user(&node_ids);
-        json_object * dataOutput = json_object_new_object();
-        create_js_paket_login_server(dataOutput,id, &out);
-        json_object_put(dataOutput);
-        return out;
-    }
-    return "Internal server error!!!\n";
-}
 
 
 static char encoding_table[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',

@@ -7,8 +7,6 @@
 #ifndef JSON_TOOLS_H
 #define JSON_TOOLS_H
 #define MAXDATASIZE 2097152 //2MB
-void create_js_paket_login_client(json_object *jobj, char *type,  char **out);
-void create_js_paket_login_server(json_object *jobj, int id,  char **out);
 void create_js_paket_process_client(json_object *jobj, char * program, int data[], int array_len,  char **out);
 void create_js_paket_process_server(json_object *jobj,  char **out);
 void create_js_packet_procees_result_server(json_object * jobj, char *result, char **out);
