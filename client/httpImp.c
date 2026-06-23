@@ -30,12 +30,8 @@ char *handle_post(char *path, char *data, char *program) {
   char *handler_result = NULL;
   char *response;
 
-  if (strcmp(path, "/login") == 0) {
-    handler_result = handle_login();
-  } else if (strcmp(path, "/process") == 0) {
+  if (strcmp(path, "/process") == 0) {
     handler_result = handle_process(data, program);
-  } else if (strcmp(path, "/exit") == 0) {
-    handler_result = handle_exit();
   } else {
     return strdup("HTTP/1.1 404 Not Found\r\n\r\n");
   }
@@ -54,16 +50,6 @@ char *handle_post(char *path, char *data, char *program) {
   }
 
   return strdup("HTTP/1.1 500 Internal Server Error\r\n\r\n");
-}
-
-char *handle_login() {
-
-  json_object *login = json_object_new_object();
-  char *request;
-  create_js_paket_login_client(login, &request);
-  json_object_put(login);
-
-  return request;
 }
 
 char *handle_process(char *data, char *program) {
@@ -133,11 +119,6 @@ char *create_request(char *method, char *path, char *data, char *program) {
   }
 
   return strdup("HTTP/1.1 500 Internal Server Error\r\n\r\n:(");
-}
-
-char *handle_exit() {
-  return strdup("HTTP/1.1 200 OK\r\nContent-Type: "
-                "application/json\r\n\r\n'{\"exit\": true}'");
 }
 
 char *base64_encode(const unsigned char *data, size_t input_length,

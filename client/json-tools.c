@@ -3,11 +3,6 @@
 #include <string.h>
 
 // request
-void create_js_paket_login_client(json_object *jobj, char **out) {
-  json_object_object_add(jobj, "deviceType", json_object_new_string("C"));
-  *out = strdup(json_object_to_json_string(jobj));
-}
-
 void create_js_paket_process_client(json_object *jobj, char *program,
                                     json_object *data, char **out) {
   json_object_object_add(jobj, "deviceType", json_object_new_string("C"));
@@ -17,20 +12,7 @@ void create_js_paket_process_client(json_object *jobj, char *program,
 
   *out = strdup(json_object_to_json_string(jobj));
 }
-
 // response
-void create_js_paket_login_server(json_object *jobj, int id, char **out) {
-  json_object_object_add(jobj, "id", json_object_new_int(id));
-  *out = strdup(json_object_to_json_string(jobj));
-}
-
-void create_js_paket_proccess_ticket_server(json_object *jobj, int pId,
-                                            char *pName, char **out) {
-  json_object_object_add(jobj, "processId", json_object_new_int(pId));
-  json_object_object_add(jobj, "processName", json_object_new_string(pName));
-
-  *out = strdup(json_object_to_json_string(jobj));
-}
 
 int extract_js_packet(json_object *jobj, char *key, char **out) {
   if (!jobj) {

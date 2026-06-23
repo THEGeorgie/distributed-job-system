@@ -16,8 +16,6 @@ char *base64_encode(const unsigned char *data,
                     size_t *output_length);
 
 //status code
-char * handle_login();
 char * handle_process(char * data, char* program);
-char * handle_exit();
 
 #endif //HTTPIMP_H
