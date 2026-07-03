@@ -13,10 +13,5 @@
   "directory": "/home/gogo/distributed-job-system/client/build",
   "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/client.dir/json-tools.c.o -c /home/gogo/distributed-job-system/client/json-tools.c",
   "file": "/home/gogo/distributed-job-system/client/json-tools.c"
-},
-{
-  "directory": "/home/gogo/distributed-job-system/client/build",
-  "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/client.dir/global-variables.c.o -c /home/gogo/distributed-job-system/client/global-variables.c",
-  "file": "/home/gogo/distributed-job-system/client/global-variables.c"
 }
 ]

@@ -201,30 +201,6 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main.c.s
 .PHONY : main.c.s
 
-usrProcMang.o: usrProcMang.c.o
-.PHONY : usrProcMang.o
-
-# target to build an object file
-usrProcMang.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/usrProcMang.c.o
-.PHONY : usrProcMang.c.o
-
-usrProcMang.i: usrProcMang.c.i
-.PHONY : usrProcMang.i
-
-# target to preprocess a source file
-usrProcMang.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/usrProcMang.c.i
-.PHONY : usrProcMang.c.i
-
-usrProcMang.s: usrProcMang.c.s
-.PHONY : usrProcMang.s
-
-# target to generate assembly for a file
-usrProcMang.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/usrProcMang.c.s
-.PHONY : usrProcMang.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -243,9 +219,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... usrProcMang.o"
-	@echo "... usrProcMang.i"
-	@echo "... usrProcMang.s"
 .PHONY : help
 
 

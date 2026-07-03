@@ -13,10 +13,5 @@
   "directory": "/home/gogo/distributed-job-system/server/build",
   "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/server.dir/json-tools.c.o -c /home/gogo/distributed-job-system/server/json-tools.c",
   "file": "/home/gogo/distributed-job-system/server/json-tools.c"
-},
-{
-  "directory": "/home/gogo/distributed-job-system/server/build",
-  "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/server.dir/usrProcMang.c.o -c /home/gogo/distributed-job-system/server/usrProcMang.c",
-  "file": "/home/gogo/distributed-job-system/server/usrProcMang.c"
 }
 ]

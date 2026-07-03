@@ -8,7 +8,6 @@ add_executable(client main.c
         httpImp.h
         json-tools.c
         json-tools.h
-        global-variables.h
-        global-variables.c)
+        )
 
 target_link_libraries(client json-c)

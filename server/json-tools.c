@@ -37,6 +37,8 @@ int extract_js_packet(json_object *jobj, char* key, char **out) {
         printf("Key not found: %s\n", key);
         return -1;
     }
+
+    return 0;
 }
 
 int extract_js_packet_int(json_object *jobj, char key[], int *out) {
@@ -51,6 +53,8 @@ int extract_js_packet_int(json_object *jobj, char key[], int *out) {
         printf("Key not found: %s\n", key);
         return -1;
     }
+
+    return 0;
 }
 
 

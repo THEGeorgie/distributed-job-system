@@ -11,7 +11,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/gogo/distributed-job-system/server/httpImp.c" "CMakeFiles/server.dir/httpImp.c.o" "gcc" "CMakeFiles/server.dir/httpImp.c.o.d"
   "/home/gogo/distributed-job-system/server/json-tools.c" "CMakeFiles/server.dir/json-tools.c.o" "gcc" "CMakeFiles/server.dir/json-tools.c.o.d"
   "/home/gogo/distributed-job-system/server/main.c" "CMakeFiles/server.dir/main.c.o" "gcc" "CMakeFiles/server.dir/main.c.o.d"
-  "/home/gogo/distributed-job-system/server/usrProcMang.c" "CMakeFiles/server.dir/usrProcMang.c.o" "gcc" "CMakeFiles/server.dir/usrProcMang.c.o.d"
   )
 
 # Targets to which this target links.

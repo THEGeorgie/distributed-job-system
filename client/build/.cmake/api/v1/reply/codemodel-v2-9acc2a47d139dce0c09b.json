@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "server",
+					"name" : "client",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-server-Debug-7addaf6bad714e52544e.json",
-					"name" : "server",
+					"id" : "client::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-client-Debug-20df331dd6516f046dac.json",
+					"name" : "client",
 					"projectIndex" : 0
 				}
 			]
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/gogo/distributed-job-system/server/build",
-		"source" : "/home/gogo/distributed-job-system/server"
+		"build" : "/home/gogo/distributed-job-system/client/build",
+		"source" : "/home/gogo/distributed-job-system/client"
 	},
 	"version" : 
 	{

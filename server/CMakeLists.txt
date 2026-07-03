@@ -8,8 +8,7 @@ add_executable(server main.c
         httpImp.h
         json-tools.c
         json-tools.h
-        usrProcMang.c
-        usrProcMang.h)
+        )
 
 target_link_libraries(server json-c)
 

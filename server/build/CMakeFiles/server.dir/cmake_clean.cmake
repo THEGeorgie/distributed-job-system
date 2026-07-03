@@ -5,8 +5,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/json-tools.c.o.d"
   "CMakeFiles/server.dir/main.c.o"
   "CMakeFiles/server.dir/main.c.o.d"
-  "CMakeFiles/server.dir/usrProcMang.c.o"
-  "CMakeFiles/server.dir/usrProcMang.c.o.d"
   "server"
   "server.pdb"
 )
