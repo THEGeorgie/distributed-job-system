@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/gogo/distributed-job-system/server/build",
+  "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/server.dir/main.c.o -c /home/gogo/distributed-job-system/server/main.c",
+  "file": "/home/gogo/distributed-job-system/server/main.c"
+},
+{
+  "directory": "/home/gogo/distributed-job-system/server/build",
+  "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/server.dir/httpImp.c.o -c /home/gogo/distributed-job-system/server/httpImp.c",
+  "file": "/home/gogo/distributed-job-system/server/httpImp.c"
+},
+{
+  "directory": "/home/gogo/distributed-job-system/server/build",
+  "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/server.dir/json-tools.c.o -c /home/gogo/distributed-job-system/server/json-tools.c",
+  "file": "/home/gogo/distributed-job-system/server/json-tools.c"
+}
+]
